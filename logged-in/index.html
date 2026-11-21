@@ -14,6 +14,62 @@
   <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+      .product-action-toast {
+        position: fixed;
+        top: 22px;
+        right: 22px;
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        width: min(390px, calc(100vw - 32px));
+        padding: 14px 16px;
+        color: #26352d;
+        background: #fff;
+        border: 1px solid #e6eee8;
+        border-left: 4px solid #27824b;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(25, 45, 32, .14);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+      }
+      .product-action-toast.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .product-action-toast .toast-status-icon {
+        flex: 0 0 auto;
+        color: #27824b;
+        font-size: 1.2rem;
+      }
+      .product-action-toast-message {
+        flex: 1;
+        font-size: .9rem;
+        line-height: 1.45;
+      }
+      .product-action-toast-close {
+        flex: 0 0 auto;
+        padding: 0 2px;
+        border: 0;
+        background: transparent;
+        color: #78837b;
+        font-size: 1.25rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+      @media (max-width: 575px) {
+        .product-action-toast { top: 12px; right: 12px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .product-action-toast { transition: none; }
+      }
+    </style>
+
 </head>
 
 <body>
@@ -138,8 +194,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/mochi.png" alt="Kem mochi"></a>
               <div class="product-actions">
-                <button class="btn-icon" title="Add to wishlist"><i class="bi bi-heart"></i></button>
-                <button class="btn-icon" title="Add to cart"><i class="bi bi-basket3"></i></button>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem mochi</a>
@@ -154,8 +210,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/chien.png" alt="Kem chiên"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem chiên</a>
@@ -170,8 +226,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/ga_ran.png" alt="Kem gà rán"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem gà rán</a>
@@ -186,8 +242,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/dua.png" alt="Kem dừa"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem dừa</a>
@@ -202,8 +258,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/vanilla.png" alt="Kem vanilla"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem vanilla</a>
@@ -218,8 +274,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/chocolate.png" alt="Kem chocolate"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem chocolate</a>
@@ -234,8 +290,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/matcha.png" alt="Kem matcha"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem matcha</a>
@@ -250,8 +306,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/caramel.png" alt="Kem caramel"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem caramel</a>
@@ -266,8 +322,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/chuoi.png" alt="Kem chuối"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem chuối</a>
@@ -282,8 +338,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/mango.png" alt="Kem mango"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem mango</a>
@@ -337,8 +393,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/chocolate.png" alt="Kem chocolate"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem chocolate</a>
@@ -353,8 +409,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/chuoi.png" alt="Kem chuối"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem chuối</a>
@@ -369,8 +425,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/mochi.png" alt="Kem mochi"></a>
               <div class="product-actions">
-                <button class="btn-icon" title="Add to wishlist"><i class="bi bi-heart"></i></button>
-                <button class="btn-icon" title="Add to cart"><i class="bi bi-basket3"></i></button>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem mochi</a>
@@ -385,8 +441,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/ga_ran.png" alt="Kem gà rán"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem gà rán</a>
@@ -401,8 +457,8 @@
             <div class="product-thumb">
               <a href="product-details.html"><img src="../assets/img/products/vanilla.png" alt="Kem vanilla"></a>
               <div class="product-actions">
-                <a href="wishlist.html"><button class="btn-icon"><i class="bi bi-heart"></i></button></a>
-                <a href="cart.html"><button class="btn-icon"><i class="bi bi-basket3"></i></button></a>
+                <button class="btn-icon" type="button" data-product-action="wishlist" title="Thêm vào yêu thích" aria-label="Thêm vào yêu thích"><i class="bi bi-heart"></i></button>
+                <button class="btn-icon" type="button" data-product-action="cart" title="Thêm vào giỏ hàng" aria-label="Thêm vào giỏ hàng"><i class="bi bi-basket3"></i></button>
               </div>
             </div>
             <a href="product-details.html" class="product-title">Kem vanilla</a>
@@ -460,6 +516,52 @@
   </footer>
 
   <button class="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+
+  <div id="productActionToast" class="product-action-toast" role="status" aria-live="polite" aria-atomic="true">
+    <i class="bi bi-check-circle-fill toast-status-icon" aria-hidden="true"></i>
+    <span id="productActionToastMessage" class="product-action-toast-message"></span>
+    <button type="button" class="product-action-toast-close" aria-label="Đóng thông báo">&times;</button>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      const toast = document.getElementById('productActionToast');
+      const message = document.getElementById('productActionToastMessage');
+      const closeButton = toast.querySelector('.product-action-toast-close');
+      let hideTimer;
+
+      function hideToast() {
+        toast.classList.remove('show');
+      }
+
+      function showToast(text) {
+        window.clearTimeout(hideTimer);
+        message.textContent = text;
+        toast.classList.add('show');
+        hideTimer = window.setTimeout(hideToast, 3200);
+      }
+
+      closeButton.addEventListener('click', hideToast);
+
+      document.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-product-action]');
+        if (!button) return;
+
+        const card = button.closest('.product-card');
+        const title = card ? card.querySelector('.product-title') : null;
+        const productName = title ? title.textContent.trim() : 'Sản phẩm';
+        const action = button.getAttribute('data-product-action');
+
+        if (action === 'cart') {
+          showToast('Đã thêm vào giỏ hàng.');
+        } else if (action === 'wishlist') {
+          showToast('Đã thêm vào danh sách yêu thích.');
+        }
+      });
+    })();
+  </script>
 
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/script.js"></script>

@@ -14,6 +14,61 @@
     <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .cart-action-toast {
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            width: min(390px, calc(100vw - 32px));
+            padding: 14px 16px;
+            color: #26352d;
+            background: #fff;
+            border: 1px solid #e6eee8;
+            border-left: 4px solid #27824b;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(25, 45, 32, .14);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-12px);
+            transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+        }
+        .cart-action-toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .cart-action-toast .toast-status-icon {
+            flex: 0 0 auto;
+            color: #27824b;
+            font-size: 1.2rem;
+        }
+        .cart-action-toast-message {
+            flex: 1;
+            font-size: .9rem;
+            line-height: 1.45;
+        }
+        .cart-action-toast-close {
+            flex: 0 0 auto;
+            padding: 0 2px;
+            border: 0;
+            background: transparent;
+            color: #78837b;
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+        @media (max-width: 575px) {
+            .cart-action-toast { top: 12px; right: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cart-action-toast { transition: none; }
+        }
+    </style>
 </head>
 
 <body>
@@ -121,7 +176,7 @@
                             </td>
                             <td>13.000 VND</td>
                             <td><span class="text-success">Còn Hàng</span></td>
-                            <td><a href="cart.html" class="btn btn-dark-soft btn-sm-pill">Thêm Vào Giỏ</a></td>
+                            <td><button type="button" class="btn btn-dark-soft btn-sm-pill" data-add-to-cart>Thêm Vào Giỏ</button></td>
                             <td><button class="cart-remove" aria-label="Remove"><i class="bi bi-x-lg"></i></button></td>
                         </tr>
                         <tr>
@@ -137,7 +192,7 @@
                             </td>
                             <td>20.000 VND</td>
                             <td><span class="text-success">Còn hàng</span></td>
-                            <td><a href="cart.html" class="btn btn-dark-soft btn-sm-pill">Thêm Vào Giỏ</a></td>
+                            <td><button type="button" class="btn btn-dark-soft btn-sm-pill" data-add-to-cart>Thêm Vào Giỏ</button></td>
                             <td><button class="cart-remove" aria-label="Remove"><i class="bi bi-x-lg"></i></button></td>
                         </tr>
                         <tr>
@@ -153,7 +208,7 @@
                             </td>
                             <td>15.000 VND</td>
                             <td><span class="text-success">Còn hàng</span></td>
-                            <td><a href="cart.html" class="btn btn-dark-soft btn-sm-pill">Thêm Vào Giỏ</a></td>
+                            <td><button type="button" class="btn btn-dark-soft btn-sm-pill" data-add-to-cart>Thêm Vào Giỏ</button></td>
                             <td><button class="cart-remove" aria-label="Remove"><i class="bi bi-x-lg"></i></button></td>
                         </tr>
                     </tbody>
@@ -204,8 +259,50 @@
 
     <button class="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
+    <div id="cartActionToast" class="cart-action-toast" role="status" aria-live="polite" aria-atomic="true">
+        <i class="bi bi-check-circle-fill toast-status-icon" aria-hidden="true"></i>
+        <span id="cartActionToastMessage" class="cart-action-toast-message"></span>
+        <button type="button" class="cart-action-toast-close" aria-label="Đóng thông báo">&times;</button>
+    </div>
+
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/script.js"></script>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const toast = document.getElementById('cartActionToast');
+            const toastMessage = document.getElementById('cartActionToastMessage');
+            const closeButton = toast ? toast.querySelector('.cart-action-toast-close') : null;
+            let hideTimer;
+
+            if (!toast || !toastMessage || !closeButton) return;
+
+            function hideToast() {
+                toast.classList.remove('show');
+            }
+
+            function showToast(message) {
+                window.clearTimeout(hideTimer);
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                hideTimer = window.setTimeout(hideToast, 3200);
+            }
+
+            closeButton.addEventListener('click', hideToast);
+
+            document.addEventListener('click', function (event) {
+                const button = event.target.closest('[data-add-to-cart]');
+                if (!button) return;
+
+                const row = button.closest('tr');
+                const productTitle = row ? row.querySelector('.product-title') : null;
+                const productName = productTitle ? productTitle.textContent.trim().replace(/\s+/g, ' ') : 'Sản phẩm';
+                showToast('Đã thêm vào giỏ hàng.');
+            });
+        })();
+    </script>
 </body>
 
 </html>

@@ -318,6 +318,150 @@
       color: #7a857d;
     }
 
+    .recipient-info {
+      margin: 16px 0 18px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid #eee9df;
+      border-radius: 12px;
+    }
+
+    .recipient-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 13px;
+      color: #26352d;
+      font-weight: 800;
+    }
+
+    .recipient-heading i {
+      color: #e98236;
+      font-size: 1.1rem;
+    }
+
+    .recipient-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+    }
+
+    .recipient-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .recipient-item span {
+      color: #7a857d;
+      font-size: .82rem;
+    }
+
+    .recipient-item strong {
+      color: #344239;
+      font-size: .9rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    @media(max-width:575px) {
+      .recipient-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    .product-info {
+      margin: 0 0 16px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid #eee9df;
+      border-radius: 12px;
+    }
+
+    .product-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 13px;
+      color: #26352d;
+      font-weight: 800;
+    }
+
+    .product-heading i {
+      color: #e98236;
+      font-size: 1.1rem;
+    }
+
+    .product-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #eee9df;
+      border-radius: 9px;
+    }
+
+    .product-table {
+      width: 100%;
+      min-width: 420px;
+      margin: 0;
+      border-collapse: separate;
+      border-spacing: 0;
+      color: #344239;
+      background: #fff;
+      font-size: .88rem;
+    }
+
+    .product-table th {
+      padding: 11px 13px;
+      background: #fbfaf7;
+      color: #68746c;
+      font-size: .82rem;
+      font-weight: 800;
+      text-align: left;
+      white-space: nowrap;
+      border-bottom: 1px solid #eee9df;
+    }
+
+    .product-table td {
+      padding: 11px 13px;
+      background: #fff;
+      border-bottom: 1px solid #f0ede7;
+      font-size: .88rem;
+    }
+
+    .product-table th:nth-child(2),
+    .product-table th:nth-child(3),
+    .product-table td:nth-child(2),
+    .product-table td:nth-child(3) {
+      text-align: right;
+    }
+
+    .product-table tr:last-child td,
+    .product-table tr:last-child th {
+      background: #fff8ef;
+      color: #b96126;
+      font-weight: 800;
+      border-bottom: 0;
+    }
+
+    .product-table tr:last-child td:last-child,
+    .product-table tr:last-child th:last-child {
+      color: #df762d;
+      white-space: nowrap;
+    }
+
+    @media(max-width:575px) {
+      .product-info {
+        padding: 13px;
+      }
+
+      .product-table th,
+      .product-table td {
+        padding: 10px;
+      }
+    }
+
     .empty-state {
       background: #fff;
       border: 1px dashed #ddd7cc;
@@ -544,40 +688,77 @@
           <div class="order-details">
             <details>
               <summary>Chi tiết đơn</summary>
+              <section class="recipient-info" aria-label="Thông tin khách hàng và người nhận">
+                <div class="recipient-heading">
+                  <i class="bi bi-person-vcard"></i>
+                  <span>Thông tin khách hàng / người nhận</span>
+                </div>
+                <div class="recipient-grid">
+                  <div class="recipient-item">
+                    <span>Họ và tên</span>
+                    <strong data-customer-field="name">Minh Anh</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Số điện thoại</span>
+                    <strong data-customer-field="phone">090102030405</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Email</span>
+                    <strong data-customer-field="email">minhanh@example.com</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Địa chỉ nhận hàng</span>
+                    <strong data-customer-field="address">273 An Dương Vương, TPHCM</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Ghi chú giao hàng</span>
+                    <strong data-customer-field="note">Không có</strong>
+                  </div>
+                </div>
+              </section>
 
-              <table style="width: 70%; border-collapse: collapse; font-size: 13px;">
+
+              <section class="product-info" aria-label="Chi tiết sản phẩm">
+  <div class="product-heading">
+    <i class="bi bi-bag-check"></i>
+    <span>Chi tiết sản phẩm</span>
+  </div>
+  <div class="product-table-wrap">
+    <table class="product-table">
                 <tr>
-                  <th style="border: 1px solid black; padding: 5px; text-align: left;">Sản phẩm</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">Số lượng</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">Thành tiền
+                  <th>Sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền
                   </th>
                 </tr>
                 <tr>
-                  <td style="border: 1px solid black; padding: 5px;">Kem matcha</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">2</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">36.000 VND</td>
+                  <td>Kem matcha</td>
+                  <td>2</td>
+                  <td>36.000 VND</td>
                 </tr>
                 <tr>
-                  <td style="border: 1px solid black; padding: 5px;">Kem mochi</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">1</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">10.000 VND</td>
+                  <td>Kem mochi</td>
+                  <td>1</td>
+                  <td>10.000 VND</td>
                 </tr>
                 <tr>
-                  <td style="border: 1px solid black; padding: 5px;">Kem chocolate</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">3</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">36.000 VND</td>
+                  <td>Kem chocolate</td>
+                  <td>3</td>
+                  <td>36.000 VND</td>
                 </tr>
                 <tr>
-                  <td colspan="2" style="border: 1px solid black; padding: 5px; text-align: right;">
+                  <td colspan="2">
                     Phí vận chuyển</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">0 VND</td>
+                  <td>0 VND</td>
                 </tr>
                 <tr>
-                  <th colspan="2" style="border: 1px solid black; padding: 5px; text-align: right;">
+                  <th colspan="2">
                     Tổng thanh toán</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">82.000 VND</th>
+                  <th>82.000 VND</th>
                 </tr>
               </table>
+  </div>
+</section>
             </details>
           </div>
         </article>
@@ -622,35 +803,72 @@
           <div class="order-details">
             <details>
               <summary>Chi tiết đơn</summary>
+              <section class="recipient-info" aria-label="Thông tin khách hàng và người nhận">
+                <div class="recipient-heading">
+                  <i class="bi bi-person-vcard"></i>
+                  <span>Thông tin khách hàng / người nhận</span>
+                </div>
+                <div class="recipient-grid">
+                  <div class="recipient-item">
+                    <span>Họ và tên</span>
+                    <strong data-customer-field="name">Minh Anh</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Số điện thoại</span>
+                    <strong data-customer-field="phone">090102030405</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Email</span>
+                    <strong data-customer-field="email">minhanh@example.com</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Địa chỉ nhận hàng</span>
+                    <strong data-customer-field="address">273 An Dương Vương, TPHCM</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Ghi chú giao hàng</span>
+                    <strong data-customer-field="note">Không có</strong>
+                  </div>
+                </div>
+              </section>
 
-              <table style="width: 70%; border-collapse: collapse; font-size: 13px;">
+
+              <section class="product-info" aria-label="Chi tiết sản phẩm">
+  <div class="product-heading">
+    <i class="bi bi-bag-check"></i>
+    <span>Chi tiết sản phẩm</span>
+  </div>
+  <div class="product-table-wrap">
+    <table class="product-table">
                 <tr>
-                  <th style="border: 1px solid black; padding: 5px; text-align: left;">Sản phẩm</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">Số lượng</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">Thành tiền
+                  <th>Sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền
                   </th>
                 </tr>
                 <tr>
-                  <td style="border: 1px solid black; padding: 5px;">Kem dừa</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">1</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">20.000 VND</td>
+                  <td>Kem dừa</td>
+                  <td>1</td>
+                  <td>20.000 VND</td>
                 </tr>
                 <tr>
-                  <td style="border: 1px solid black; padding: 5px;">Kem mochi</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">1</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">10.000 VND</td>
+                  <td>Kem mochi</td>
+                  <td>1</td>
+                  <td>10.000 VND</td>
                 </tr>
                 <tr>
-                  <td colspan="2" style="border: 1px solid black; padding: 5px; text-align: right;">
+                  <td colspan="2">
                     Phí vận chuyển</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">0 VND</td>
+                  <td>0 VND</td>
                 </tr>
                 <tr>
-                  <th colspan="2" style="border: 1px solid black; padding: 5px; text-align: right;">
+                  <th colspan="2">
                     Tổng thanh toán</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">30.000 VND</th>
+                  <th>30.000 VND</th>
                 </tr>
               </table>
+  </div>
+</section>
             </details>
           </div>
 
@@ -688,25 +906,62 @@
           <div class="order-details">
             <details>
               <summary>Chi tiết đơn</summary>
+              <section class="recipient-info" aria-label="Thông tin khách hàng và người nhận">
+                <div class="recipient-heading">
+                  <i class="bi bi-person-vcard"></i>
+                  <span>Thông tin khách hàng / người nhận</span>
+                </div>
+                <div class="recipient-grid">
+                  <div class="recipient-item">
+                    <span>Họ và tên</span>
+                    <strong data-customer-field="name">Minh Anh</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Số điện thoại</span>
+                    <strong data-customer-field="phone">090102030405</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Email</span>
+                    <strong data-customer-field="email">minhanh@example.com</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Địa chỉ nhận hàng</span>
+                    <strong data-customer-field="address">273 An Dương Vương, TPHCM</strong>
+                  </div>
+                  <div class="recipient-item">
+                    <span>Ghi chú giao hàng</span>
+                    <strong data-customer-field="note">Không có</strong>
+                  </div>
+                </div>
+              </section>
 
-              <table style="width: 70%; border-collapse: collapse;">
+
+              <section class="product-info" aria-label="Chi tiết sản phẩm">
+  <div class="product-heading">
+    <i class="bi bi-bag-check"></i>
+    <span>Chi tiết sản phẩm</span>
+  </div>
+  <div class="product-table-wrap">
+    <table class="product-table">
                 <tr>
-                  <th style="border: 1px solid black; padding: 5px; text-align: left;">Sản phẩm</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">Số lượng</th>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">Thành tiền
+                  <th>Sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền
                   </th>
                 </tr>
                 <tr>
-                  <td style="border: 1px solid black; padding: 5px;">Kem chuối</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">1</td>
-                  <td style="border: 1px solid black; padding: 5px; text-align: right;">20.000 VND</td>
+                  <td>Kem chuối</td>
+                  <td>1</td>
+                  <td>20.000 VND</td>
                 </tr>
                 <tr>
-                  <td colspan="2" style="border: 1px solid black; padding: 5px; text-align: right;">
+                  <td colspan="2">
                     Tổng đơn hàng</td>
-                  <th style="border: 1px solid black; padding: 5px; text-align: right;">20.000 VND</th>
+                  <th>20.000 VND</th>
                 </tr>
               </table>
+  </div>
+</section>
 
             </details>
           </div>
@@ -758,6 +1013,206 @@
   </footer>
   <button class="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
+  <script>
+    // Thông tin khách hàng dùng chung giữa hồ sơ, thanh toán và lịch sử đơn hàng.
+    // Chuẩn dữ liệu: localStorage.setItem('icecream_customer_info', JSON.stringify({...}))
+    (function () {
+      'use strict';
+
+      const CUSTOMER_STORAGE_KEY = 'icecream_customer_info';
+      const CUSTOMER_SEED_VERSION_KEY = 'icecream_customer_info_seed_version';
+      const CUSTOMER_SEED_VERSION = 'minhanh-2026-11-21-v1';
+      const DEFAULT_CUSTOMER_INFO = {
+        name: 'Minh Anh',
+        phone: '090102030405',
+        email: 'minhanh@example.com',
+        address: '273 An Dương Vương, TPHCM',
+        note: 'Không có'
+      };
+      const FIELD_ALIASES = {
+        name: [
+          'name', 'fullname', 'fullName', 'customerName', 'recipientName', 'receiverName',
+          'hoTen', 'ten', 'tenKhachHang', 'tenNguoiNhan'
+        ],
+        phone: [
+          'phone', 'phoneNumber', 'mobile', 'telephone', 'customerPhone', 'recipientPhone',
+          'receiverPhone', 'sdt', 'soDienThoai', 'dienThoai'
+        ],
+        email: ['email', 'emailAddress', 'customerEmail', 'mail'],
+        address: [
+          'address', 'fullAddress', 'shippingAddress', 'deliveryAddress', 'recipientAddress',
+          'diaChi', 'diaChiNhanHang', 'addressText'
+        ],
+        note: ['note', 'orderNote', 'deliveryNote', 'shippingNote', 'ghiChu', 'ghiChuGiaoHang']
+      };
+
+      function normalizeKey(value) {
+        return String(value || '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+          .replace(/[^a-zA-Z0-9]/g, '')
+          .toLowerCase();
+      }
+
+      function parseValue(value) {
+        if (typeof value !== 'string') return value;
+        const trimmed = value.trim();
+        if (!trimmed) return '';
+        try { return JSON.parse(trimmed); } catch (_) { return value; }
+      }
+
+      function getStorage(type) {
+        try { return window[type]; } catch (_) { return null; }
+      }
+
+      function readStorage(storage) {
+        const records = [];
+        const directValues = {};
+        if (!storage) return { records, directValues };
+
+        try {
+          // Đọc khóa chuẩn trước để ưu tiên dữ liệu hồ sơ mới nhất.
+          const primary = storage.getItem(CUSTOMER_STORAGE_KEY);
+          if (primary) records.push(parseValue(primary));
+
+          for (let i = 0; i < storage.length; i += 1) {
+            const key = storage.key(i);
+            if (!key || key === CUSTOMER_STORAGE_KEY) continue;
+            const value = parseValue(storage.getItem(key));
+            if (value && typeof value === 'object') records.push(value);
+            else directValues[key] = value;
+          }
+        } catch (_) {
+          // Trình duyệt có thể chặn storage trong một số chế độ riêng tư.
+        }
+        return { records, directValues };
+      }
+
+      function collectObjects(value, result, depth) {
+        if (!value || typeof value !== 'object' || depth > 4) return;
+        if (Array.isArray(value)) {
+          value.forEach(item => collectObjects(item, result, depth + 1));
+          return;
+        }
+        result.push(value);
+        Object.keys(value).forEach(key => {
+          const nested = value[key];
+          if (nested && typeof nested === 'object') collectObjects(nested, result, depth + 1);
+        });
+      }
+
+      function getField(objects, directValues, aliases) {
+        const wanted = aliases.map(normalizeKey);
+        for (const object of objects) {
+          for (const [key, value] of Object.entries(object)) {
+            if (wanted.includes(normalizeKey(key)) && value !== null && value !== undefined && typeof value !== 'object') {
+              const text = String(value).trim();
+              if (text) return text;
+            }
+          }
+        }
+        for (const [key, value] of Object.entries(directValues)) {
+          if (wanted.includes(normalizeKey(key)) && value !== null && value !== undefined && typeof value !== 'object') {
+            const text = String(value).trim();
+            if (text) return text;
+          }
+        }
+        return '';
+      }
+
+      function formatAddress(value) {
+        if (!value) return '';
+        if (typeof value === 'string') return value.trim();
+        if (typeof value !== 'object') return String(value);
+
+        const parts = [
+          value.detail, value.street, value.streetAddress, value.addressLine,
+          value.ward, value.wardName, value.district, value.districtName,
+          value.city, value.province, value.cityName, value.provinceName
+        ].filter(part => part && String(part).trim());
+        return parts.map(part => String(part).trim()).join(', ');
+      }
+
+      // Ghi nhận thông tin người nhận vừa được cung cấp một lần.
+      // Những lần cập nhật hồ sơ sau đó sẽ không bị ghi đè khi mở lại trang.
+      function seedCustomerInfo() {
+        const storage = getStorage('localStorage');
+        if (!storage) return;
+        try {
+          if (storage.getItem(CUSTOMER_SEED_VERSION_KEY) === CUSTOMER_SEED_VERSION) return;
+          const current = parseValue(storage.getItem(CUSTOMER_STORAGE_KEY));
+          const base = current && typeof current === 'object' && !Array.isArray(current) ? current : {};
+          storage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify({ ...base, ...DEFAULT_CUSTOMER_INFO }));
+          storage.setItem(CUSTOMER_SEED_VERSION_KEY, CUSTOMER_SEED_VERSION);
+        } catch (error) {
+          console.warn('Không thể khởi tạo thông tin khách hàng:', error);
+        }
+      }
+
+      function getCustomerInfo() {
+        const local = readStorage(getStorage('localStorage'));
+        const session = readStorage(getStorage('sessionStorage'));
+        const records = [];
+        collectObjects(local.records, records, 0);
+        collectObjects(session.records, records, 0);
+
+        const directValues = { ...session.directValues, ...local.directValues };
+        const info = {};
+        Object.keys(FIELD_ALIASES).forEach(field => {
+          info[field] = getField(records, directValues, FIELD_ALIASES[field]);
+        });
+
+        // Hỗ trợ dữ liệu địa chỉ lưu dưới dạng object trong hồ sơ khách hàng.
+        if (!info.address) {
+          for (const object of records) {
+            for (const [key, value] of Object.entries(object)) {
+              if (['address', 'shippingAddress', 'deliveryAddress', 'diaChi', 'diaChiNhanHang'].map(normalizeKey).includes(normalizeKey(key)) && value && typeof value === 'object') {
+                info.address = formatAddress(value);
+                if (info.address) break;
+              }
+            }
+            if (info.address) break;
+          }
+        }
+        return info;
+      }
+
+      function renderCustomerInfo() {
+        const info = getCustomerInfo();
+        document.querySelectorAll('[data-customer-field]').forEach(element => {
+          const field = element.getAttribute('data-customer-field');
+          const value = info[field];
+          element.textContent = value || (field === 'note' ? 'Không có' : 'Chưa có thông tin');
+        });
+      }
+
+      // Cho trang hồ sơ/thanh toán gọi hàm này sau khi khách hàng lưu thông tin.
+      window.saveIcecreamCustomerInfo = function (customerInfo) {
+        if (!customerInfo || typeof customerInfo !== 'object') return false;
+        try {
+          const storage = getStorage('localStorage');
+          if (!storage) return false;
+          const current = parseValue(storage.getItem(CUSTOMER_STORAGE_KEY)) || {};
+          const updated = { ...(typeof current === 'object' ? current : {}), ...customerInfo };
+          storage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(updated));
+          renderCustomerInfo();
+          window.dispatchEvent(new CustomEvent('icecreamCustomerInfoUpdated', { detail: updated }));
+          return true;
+        } catch (error) {
+          console.warn('Không thể lưu thông tin khách hàng:', error);
+          return false;
+        }
+      };
+
+      window.addEventListener('storage', function (event) {
+        if (!event.key || event.key === CUSTOMER_STORAGE_KEY) renderCustomerInfo();
+      });
+      window.addEventListener('icecreamCustomerInfoUpdated', renderCustomerInfo);
+      seedCustomerInfo();
+      renderCustomerInfo();
+    })();
+  </script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/script.js"></script>
 </body>
